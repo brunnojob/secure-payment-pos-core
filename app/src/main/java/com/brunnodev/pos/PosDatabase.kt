@@ -2,6 +2,13 @@ package com.brunnodev.pos
 
 import androidx.room.*
 
+class PersistenceConverters {
+    @TypeConverter fun saleState(value: String): SaleState = SaleState.valueOf(value)
+    @TypeConverter fun saleState(value: SaleState): String = value.name
+    @TypeConverter fun paymentState(value: String): PaymentState = PaymentState.valueOf(value)
+    @TypeConverter fun paymentState(value: PaymentState): String = value.name
+}
+
 @Dao
 interface PosDao {
     @Query("SELECT * FROM catalog WHERE active = 1 ORDER BY name") suspend fun catalog(): List<CatalogItem>
@@ -19,4 +26,7 @@ interface PosDao {
 }
 
 @Database(entities = [CatalogItem::class, SaleEntity::class, SaleLineEntity::class, PaymentEntity::class, OutboxEntity::class], version = 1, exportSchema = true)
-abstract class PosDatabase : RoomDatabase() { abstract fun posDao(): PosDao }
+@TypeConverters(PersistenceConverters::class)
+abstract class PosDatabase : RoomDatabase() {
+    abstract fun posDao(): PosDao
+}
