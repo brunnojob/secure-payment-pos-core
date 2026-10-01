@@ -25,7 +25,17 @@ interface PosDao {
     @Query("UPDATE sync_outbox SET attempts = attempts + 1 WHERE id IN (:ids)") suspend fun recordFailures(ids: List<String>)
 }
 
-@Database(entities = [CatalogItem::class, SaleEntity::class, SaleLineEntity::class, PaymentEntity::class, OutboxEntity::class], version = 1, exportSchema = true)
+@Database(
+    entities = [
+        CatalogItem::class,
+        SaleEntity::class,
+        SaleLineEntity::class,
+        PaymentEntity::class,
+        OutboxEntity::class
+    ],
+    version = 1,
+    exportSchema = false
+)
 @TypeConverters(PersistenceConverters::class)
 abstract class PosDatabase : RoomDatabase() {
     abstract fun posDao(): PosDao
