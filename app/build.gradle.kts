@@ -5,7 +5,7 @@ plugins {
 }
 android {
     namespace = "com.brunnodev.pos"
-    compileSdk = 36
+    compileSdk = 37
     defaultConfig { applicationId = "com.brunnodev.pos"; minSdk = 26; targetSdk = 36; versionCode = 1; versionName = "1.0.0" }
     buildFeatures { compose = true }
 }
