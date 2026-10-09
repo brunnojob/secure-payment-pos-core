@@ -1,26 +1,30 @@
 # POS Core
 
-Aplicativo Android para catálogo, estoque, registro de vendas recebidas em dinheiro, eventos assinados no Keystore e fila de sincronização.
+An Android application for catalog management, stock, received cash sales, Keystore-signed events, and queued synchronization.
 
-## Executar
+## Run
 
-Requisitos: Android SDK, Kotlin e Jetpack Compose.
+Requirements: Android SDK, Kotlin, and Jetpack Compose.
 
 ```sh
 gradle :app:testDebugUnitTest :app:assembleDebug
 ```
 
-## Funcionamento
+## Behavior
 
-O operador cadastra os produtos e confirma o recebimento antes de registrar a venda. Preços vêm do catálogo persistido; reservas e eventos usam transações Room. Recusas do provedor devolvem o estoque. A interface usa registro de dinheiro recebido; cartão e Pix exigem implementar `PaymentProvider` com fornecedor real. A assinatura local não é validada pela API de arquivo.
+The operator creates products and confirms receipt of payment before recording a sale. Prices come from the persisted catalog; reservations and events use Room transactions. Provider rejections release reserved stock. Card and Pix payments require a real implementation of `PaymentProvider`. The archive API does not verify the local signature.
 
-## Persistência de resultados
+## Result synchronization
 
-O arquivo de operações está em [vercel-home-telemetry-api.vercel.app](https://vercel-home-telemetry-api.vercel.app/laboratory.html?project=secure-payment-pos-core). As migrações Supabase estão no [repositório da API](https://github.com/brunnojob/vercel-home-telemetry-api/tree/main/supabase/migrations).
+The [operations archive](https://vercel-home-telemetry-api.vercel.app/laboratory.html?project=secure-payment-pos-core) stores execution results. Supabase migrations are in the [API repository](https://github.com/brunnojob/vercel-home-telemetry-api/tree/main/supabase/migrations).
 
 ```sh
-python cloud/sync.py enqueue resultado.json --project secure-payment-pos-core
+python cloud/sync.py enqueue result.json --project secure-payment-pos-core
 python cloud/sync.py sync
 ```
 
-Defina `BRUNNODEV_ACCESS_TOKEN` com sua sessão. A fila SQLite conserva os relatórios até confirmação do servidor; o mesmo conteúdo não gera registros duplicados. Tokens não são gravados no código.
+Set `BRUNNODEV_ACCESS_TOKEN` to your session token. The SQLite outbox retains reports until the server confirms persistence; identical content does not create duplicate records. Tokens are not stored in source code. To run the synchronization tests:
+
+```sh
+python -m unittest discover -s cloud
+```
