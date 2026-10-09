@@ -19,6 +19,7 @@ interface PosDao {
     @Insert suspend fun insertPayment(payment: PaymentEntity)
     @Insert suspend fun insertOutbox(event: OutboxEntity)
     @Query("UPDATE catalog SET stock = stock - :quantity WHERE sku = :sku AND stock >= :quantity") suspend fun decrementStock(sku: String, quantity: Int): Int
+    @Query("UPDATE catalog SET stock = stock + :quantity WHERE sku = :sku") suspend fun restoreStock(sku: String, quantity: Int): Int
     @Query("UPDATE sales SET state = :state WHERE id = :saleId AND state = :expected") suspend fun transitionSale(saleId: String, expected: SaleState, state: SaleState): Int
     @Query("SELECT * FROM sync_outbox ORDER BY createdAt LIMIT :limit") suspend fun pendingOutbox(limit: Int): List<OutboxEntity>
     @Query("DELETE FROM sync_outbox WHERE id IN (:ids)") suspend fun removeOutbox(ids: List<String>)
