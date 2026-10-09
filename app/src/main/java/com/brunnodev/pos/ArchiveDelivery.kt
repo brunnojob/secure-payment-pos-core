@@ -11,11 +11,14 @@ class ArchiveDelivery(
     endpoint: String = "https://vercel-home-telemetry-api.vercel.app/api/runs",
 ) {
     private val destination =
-        URL(endpoint).also { require(it.protocol == "https" && it.userInfo == null) }
+        URL(endpoint).also { require(it.protocol == "https" && it.userInfo == null && it.ref == null) }
 
     suspend fun send(key: String, kind: String, payload: String): Boolean =
         withContext(Dispatchers.IO) {
-            require(token.isNotBlank() && token.length <= 8192 && !token.contains('\n'))
+            require(token.length in 1..8192 && token.matches(Regex("[A-Za-z0-9_.-]+")))
+            require(key.matches(Regex("[A-Za-z0-9_.:-]{1,128}")))
+            require(kind.matches(Regex("[a-z][a-z0-9_-]{0,63}")))
+            require(payload.toByteArray(Charsets.UTF_8).size <= 196608)
             val body =
                 JSONObject()
                     .put("project", "secure-payment-pos-core")
@@ -24,6 +27,7 @@ class ArchiveDelivery(
                     .put("result", JSONObject(payload))
                     .toString()
                     .toByteArray(Charsets.UTF_8)
+            require(body.size <= 262144)
             val connection =
                 (destination.openConnection() as HttpURLConnection).apply {
                     requestMethod = "POST"
@@ -49,7 +53,8 @@ class ArchiveDelivery(
                         }
                         bytes.copyOf(offset).toString(Charsets.UTF_8)
                     }
-                JSONObject(response).optBoolean("persisted", false)
+                val receipt = JSONObject(response)
+                receipt.optBoolean("persisted", false) && receipt.optString("clientKey") == key
             } finally {
                 connection.disconnect()
             }
