@@ -3,13 +3,24 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
 }
+
 android {
     namespace = "com.brunnodev.pos"
-    compileSdk = 36
-    defaultConfig { applicationId = "com.brunnodev.pos"; minSdk = 26; targetSdk = 36; versionCode = 1; versionName = "1.0.0" }
+    compileSdk { version = release(37) { minorApiLevel = 2 } }
+    defaultConfig {
+        applicationId = "com.brunnodev.pos"
+        minSdk = 26
+        targetSdk = 36
+        versionCode = 1
+        versionName = "1.0.0"
+    }
     buildFeatures { compose = true }
-    compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
 }
+
 dependencies {
     implementation(platform("androidx.compose:compose-bom:2026.09.00"))
     implementation("androidx.activity:activity-compose:1.13.0")
