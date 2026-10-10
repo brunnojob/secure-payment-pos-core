@@ -33,20 +33,20 @@ Daemon will be stopped at the end of the build
 > Task :app:extractDeepLinksDebug
 > Task :app:processDebugMainManifest
 > Task :app:processDebugManifest
+> Task :app:processDebugManifestForPackage
 > Task :app:preDebugUnitTestBuild UP-TO-DATE
 > Task :app:javaPreCompileDebugUnitTest
-> Task :app:processDebugManifestForPackage
 > Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
 > Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugResources
 > Task :app:mergeDebugAssets
 > Task :app:compressDebugAssets
-> Task :app:mergeDebugResources
+> Task :app:processDebugResources
 > Task :app:generateDebugGlobalSynthetics
 > Task :app:desugarDebugFileDependencies
 > Task :app:mergeDebugJniLibFolders
 > Task :app:checkDebugDuplicateClasses
 > Task :app:mergeDebugNativeLibs
-> Task :app:processDebugResources
 > Task :app:mergeLibDexDebug
 
 > Task :app:stripDebugDebugSymbols
@@ -59,8 +59,8 @@ Unable to strip the following libraries, packaging them as they are: libandroidx
 > Task :app:mergeExtDexDebug
 > Task :app:compileDebugKotlin
 > Task :app:compileDebugJavaWithJavac NO-SOURCE
-> Task :app:bundleDebugClassesToRuntimeJar
 > Task :app:bundleDebugClassesToCompileJar
+> Task :app:bundleDebugClassesToRuntimeJar
 > Task :app:processDebugJavaRes
 > Task :app:kspDebugUnitTestKotlin SKIPPED
 > Task :app:compileDebugUnitTestKotlin
@@ -74,9 +74,9 @@ Unable to strip the following libraries, packaging them as they are: libandroidx
 > Task :app:createDebugApkListingFileRedirect
 > Task :app:assembleDebug
 w: Detected multiple Kotlin daemon sessions at 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1791599712498.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1791600197495.json
 
-BUILD SUCCESSFUL in 42s
+BUILD SUCCESSFUL in 39s
 43 actionable tasks: 43 executed
 Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.6.0/userguide/configuration_cache_enabling.html
 
