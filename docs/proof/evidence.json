@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "repository": "brunnojob/secure-payment-pos-core",
+  "source_commit": "b80569709a59f213f6a11d12ec41c0382ebb2c44",
+  "generated_at": "2026-10-10T02:35:07.489722+00:00",
+  "run_url": "https://github.com/brunnojob/secure-payment-pos-core/actions/runs/38017470486",
+  "inputs_sha256": {
+    ".proof/scenarios.json": "6487acf4a9c6e8048445374d0b3079317faa36a1bf1572696ef9094ced7dd1c1",
+    ".proof/junit.py": "0d1180bcbfb689eb0ff70beda2e03b4d30c4f427df220f32d5d4023a421e4372"
+  },
+  "cases": [
+    {
+      "display": false,
+      "name": "sdkmanager \"platforms;android-37.2\"",
+      "argv": [
+        "bash",
+        "-e",
+        "-o",
+        "pipefail",
+        "-c",
+        "sdkmanager \"platforms;android-37.2\""
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "seconds": 1.708,
+      "output": "Loading package information...                                                  \rLoading local repository...                                                     \r[                                       ] 3% Loading local repository...        \r[                                       ] 3% Fetch remote repository...         \r[=                                      ] 3% Fetch remote repository...         \r[=                                      ] 4% Fetch remote repository...         \r[=                                      ] 5% Fetch remote repository...         \r[==                                     ] 5% Fetch remote repository...         \r[==                                     ] 6% Fetch remote repository...         \r[==                                     ] 7% Fetch remote repository...         \r[==                                     ] 7% Computing updates...               \r[===                                    ] 8% Computing updates...               \r[===                                    ] 10% Computing updates...              \r[=======================================] 100% Computing updates...             \r\n\n",
+      "output_sha256": "7408f53520cde7f1c2406a69630fa4be8917a94552c7bf7bf5db71f802706fce"
+    },
+    {
+      "display": true,
+      "name": "gradle :app:testDebugUnitTest :app:assembleDebug --no-daemon",
+      "argv": [
+        "bash",
+        "-e",
+        "-o",
+        "pipefail",
+        "-c",
+        "gradle :app:testDebugUnitTest :app:assembleDebug --no-daemon"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "seconds": 42.736,
+      "output": "To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.6.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.\nDaemon will be stopped at the end of the build \n> Task :app:preBuild UP-TO-DATE\n> Task :app:preDebugBuild UP-TO-DATE\n> Task :app:generateDebugResources\n> Task :app:packageDebugResources\n> Task :app:processDebugNavigationResources\n> Task :app:parseDebugLocalResources\n> Task :app:javaPreCompileDebug\n> Task :app:generateDebugRFile\n> Task :app:checkDebugAarMetadata\n> Task :app:mapDebugSourceSetPaths\n> Task :app:compileDebugNavigationResources\n> Task :app:createDebugCompatibleScreenManifests\n> Task :app:extractDeepLinksDebug\n> Task :app:processDebugMainManifest\n> Task :app:processDebugManifest\n> Task :app:preDebugUnitTestBuild UP-TO-DATE\n> Task :app:javaPreCompileDebugUnitTest\n> Task :app:processDebugManifestForPackage\n> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE\n> Task :app:generateDebugAssets UP-TO-DATE\n> Task :app:mergeDebugAssets\n> Task :app:compressDebugAssets\n> Task :app:mergeDebugResources\n> Task :app:generateDebugGlobalSynthetics\n> Task :app:desugarDebugFileDependencies\n> Task :app:mergeDebugJniLibFolders\n> Task :app:checkDebugDuplicateClasses\n> Task :app:mergeDebugNativeLibs\n> Task :app:processDebugResources\n> Task :app:mergeLibDexDebug\n\n> Task :app:stripDebugDebugSymbols\nUnable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so. Run with --info option to learn more.\n\n> Task :app:validateSigningDebug\n> Task :app:writeDebugAppMetadata\n> Task :app:writeDebugSigningConfigVersions\n> Task :app:kspDebugKotlin\n> Task :app:mergeExtDexDebug\n> Task :app:compileDebugKotlin\n> Task :app:compileDebugJavaWithJavac NO-SOURCE\n> Task :app:bundleDebugClassesToRuntimeJar\n> Task :app:bundleDebugClassesToCompileJar\n> Task :app:processDebugJavaRes\n> Task :app:kspDebugUnitTestKotlin SKIPPED\n> Task :app:compileDebugUnitTestKotlin\n> Task :app:mergeDebugJavaResource\n> Task :app:dexBuilderDebug\n> Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE\n> Task :app:processDebugUnitTestJavaRes\n> Task :app:testDebugUnitTest\n> Task :app:mergeProjectDexDebug\n> Task :app:packageDebug\n> Task :app:createDebugApkListingFileRedirect\n> Task :app:assembleDebug\nw: Detected multiple Kotlin daemon sessions at \ngradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1791599712498.json\n\nBUILD SUCCESSFUL in 42s\n43 actionable tasks: 43 executed\nConsider enabling configuration cache to speed up this build: https://docs.gradle.org/9.6.0/userguide/configuration_cache_enabling.html\n",
+      "output_sha256": "8db041fed5e8398fbbf200e3589d07b1ae6727a818c40c20a7674d93c590562a"
+    },
+    {
+      "display": true,
+      "name": "Read actual Android domain-test execution reports",
+      "argv": [
+        "python",
+        ".proof/junit.py"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "seconds": 0.151,
+      "output": "{\"passed\": 3, \"scenarios\": [\"sandboxProviderDeclinesZeroAndNegativeAmounts\", \"sandboxProviderApprovesPositiveAmount\", \"sandboxProviderReturnsStableReferenceForRepeatedRequest\"]}\n",
+      "output_sha256": "890204346ab2cc745a66fa8f0b0b8e9e8ae855bcb2b29057e8377d7438f3027b"
+    }
+  ],
+  "passed": true
+}
