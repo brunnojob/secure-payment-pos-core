@@ -26,7 +26,7 @@ Original source and documentation are MIT licensed; see [LICENSE](LICENSE). Thir
 
 The Kotlin archive transport validates HTTPS destinations, token characters, idempotency keys, event kinds and payload sizes. A queue item is confirmed only when the receipt contains `persisted: true` and the matching client key.
 
-Contribution trailer: `Co-authored-by: nyctophile <329826984+ineedfoundmyway@users.noreply.github.com>`.
+Contribution trailer: `Co-authored-by: nyctophile <33561761+ineedfoundmyway@users.noreply.github.com>`.
 
 ## Execution proof
 
