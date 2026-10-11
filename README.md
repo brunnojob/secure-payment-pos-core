@@ -1,5 +1,7 @@
 # POS Core
 
+[View execution evidence](https://brunnojob.github.io/devstart-lab/proofs/secure-payment-pos-core/)
+
 An Android application for catalog management, stock, received cash sales, Keystore-signed events, and queued synchronization.
 
 ## Run
